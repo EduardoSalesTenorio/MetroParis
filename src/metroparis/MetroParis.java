@@ -1,21 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package metroparis;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Eduardo Sales
- */
 public class MetroParis {
 
     String Origem;
     String Destino;
 
+    double ValorReal;
+    double ValorEuristico;
     double SomaTotal = 0;
 
     public static void main(String[] args) {
@@ -23,10 +16,10 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, "Digite a sua Origem e Destino para Tentarmos Encontrar a melhor rota");
 
         new MetroParis().start();
-
     }
 
     public void start() {
+
         Origem = JOptionPane.showInputDialog(null, "Onde vc esta?");
 
         while (!"E1".equals(Origem) && !"E2".equals(Origem) && !"E3".equals(Origem) && !"E4".equals(Origem) && !"E5".equals(Origem) && !"E6".equals(Origem) && !"E7".equals(Origem) && !"E8".equals(Origem) && !"E9".equals(Origem) && !"E10".equals(Origem) && !"E11".equals(Origem) && !"E12".equals(Origem) && !"E13".equals(Origem) && !"E14".equals(Origem)) {
@@ -41,7 +34,13 @@ public class MetroParis {
             Destino = JOptionPane.showInputDialog(null, "Onde vc quer ir?");
         }
 
-        chamarMetodoOrigem();
+        if (Origem == Destino) {
+            JOptionPane.showMessageDialog(null, "Vc ja esta no lugar, BURRO");
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Doido");
+            chamarMetodoOrigem();
+        }
     }
 
     public void chamarMetodoOrigem() {
@@ -91,21 +90,11 @@ public class MetroParis {
     }
 
     public void eUm() {
-        SomaTotal += 20;
-        eDois();
+
     }
 
     public void eDois() {
-    double e3 = 8.5 + 8.5;
-    
-    
-        if ("E2".equals(Destino)) {
-            JOptionPane.showMessageDialog(null, "Encontrou");
-        } else if (Destino == "d") {
-            JOptionPane.showMessageDialog(null, "Erro");
-        } else {
-            
-        }
+
     }
 
     public void eTres() {
