@@ -1,5 +1,7 @@
 package metroparis;
 
+import javax.swing.JOptionPane;
+
 public class ValorHeuristico {
     
     
@@ -18,5 +20,67 @@ public class ValorHeuristico {
     double[] E13 = {27.6,19.1,12.1,10.6,14.5,15.2,12.4,22.7,21.2,18.7,31.5,28.8,0,5.1};
     double[] E14 = {29.8,21.8,16.6,15.4,17.9,18.2,15.6,27.6,26.6,21.2,35.5,33.6,5.1,0};
      
+    public int Teste(int a){
+       
+        a = 30;
+        return a;
+    }
     
+    
+    public double eUm(double a) {
+
+        return a;
+    }
+
+    public void eDois() {
+
+    }
+
+    public void eTres() {
+
+    }
+
+    public void eQuatro() {
+
+    }
+
+    public void eCinco() {
+
+    }
+
+    public void eSeis() {
+
+    }
+
+    public void eSete() {
+
+    }
+
+    public void eOito() {
+
+    }
+
+    public void eNove() {
+
+    }
+
+    public void eDez() {
+
+    }
+
+    public void eOnze() {
+
+    }
+
+    public void eDoze() {
+
+    }
+
+    public void eTreze() {
+
+    }
+
+    public void eQuatoze() {
+
+    }
 }
