@@ -3,6 +3,7 @@ package metroparis;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 
 public class MetroParis {
 
@@ -31,13 +32,14 @@ public class MetroParis {
 
     String Chegou;
 
-    double ValorReal;
     double ValorEuristico;
     double SomaTotal = 0;
 
     int contador = 0;
+    double valorReal = 0;
 
     double Comparacao[] = new double[5];
+    double buscarValorReal[] = new double[5];
 
     static String Metodo[] = new String[5];
 
@@ -180,59 +182,75 @@ public class MetroParis {
     }
 
     public void chegou() {
-        if (Destino.equals(Chegou)) {
+        if (Chegou.equals(Destino)) {
             JOptionPane.showMessageDialog(null, "Estações que deve pegar " + OndePassou);
+            JOptionPane.showMessageDialog(null, valorReal);
             System.exit(0);
         }
     }
 
     public void buscarValor() {
-        for (int i = 0; Metodo.length > contador; contador++) {
-            if ("E1".equals((String) this.Metodo[contador])) {
-                pegarValorEUm();
+        for (int i = 0; Metodo.length > i; i++) {
+            if ("E1".equals(this.Metodo[i])) {
+                contador = i;
+
+                Comparacao[contador] += E1[DestinoBuscar];
+
             }
-            if ("E2".equals((String) this.Metodo[contador])) {
-                pegarValorEDois();
+            if ("E2".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E2[DestinoBuscar];
             }
-            if ("E3".equals((String) this.Metodo[contador])) {
-                pegarValorETres();
+            if ("E3".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E3[DestinoBuscar];
             }
-            if ("E4".equals((String) this.Metodo[contador])) {
-                pegarValorEQuatro();
+            if ("E4".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E4[DestinoBuscar];
             }
-            if ("E5".equals((String) this.Metodo[contador])) {
-                pegarValorECinco();
+            if ("E5".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E5[DestinoBuscar];
             }
-            if ("E6".equals((String) this.Metodo[contador])) {
-                pegarValorESeis();
+            if ("E6".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E6[DestinoBuscar];
             }
-            if ("E7".equals((String) this.Metodo[contador])) {
-                pegarValorESete();
+            if ("E7".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E7[DestinoBuscar];
             }
-            if ("E8".equals((String) this.Metodo[contador])) {
-                pegarValorEOito();
+            if ("E8".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E8[DestinoBuscar];
             }
-            if ("E9".equals((String) this.Metodo[contador])) {
-                pegarValorENove();
+            if ("E9".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E9[DestinoBuscar];
             }
-            if ("E10".equals((String) this.Metodo[contador])) {
-                pegarValorEDez();
+            if ("E10".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E10[DestinoBuscar];
             }
-            if ("E11".equals((String) this.Metodo[contador])) {
-                pegarValorEOnze();
+            if ("E11".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E11[DestinoBuscar];
             }
-            if ("E12".equals((String) this.Metodo[contador])) {
-                pegarValorEDose();
+            if ("E12".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E12[DestinoBuscar];
             }
-            if ("E13".equals((String) this.Metodo[contador])) {
-                pegarValorETreze();
+            if ("E13".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E13[DestinoBuscar];
             }
-            if ("E14".equals((String) this.Metodo[contador])) {
-                pegarValorEQuatoze();
+            if ("E14".equals(this.Metodo[i])) {
+                contador = i;
+                Comparacao[contador] += E14[DestinoBuscar];
             }
         }
 
-        contador = 0;
     }
 
     public void compararValores() {
@@ -250,6 +268,7 @@ public class MetroParis {
             }
 
         }
+        valorReal += buscarValorReal[Cont];
 
         //Result = Metodo[Cont];
         Result = this.Metodo[Cont];
@@ -316,6 +335,7 @@ public class MetroParis {
     public void eUm() {
         OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
 
+        JOptionPane.showMessageDialog(null, OndePassou);
         Chegou = "E1"; //Ver se ela chegou no destinho correto
         chegou();
 
@@ -323,7 +343,8 @@ public class MetroParis {
 
         this.Metodo[0] = "E2";
 
-        Comparacao[0] = 10;
+        Comparacao[0] = 10 + valorReal;
+        buscarValorReal[0] = 10;
 
         buscarValor();
         compararValores();
@@ -332,6 +353,8 @@ public class MetroParis {
     public void eDois() {
         OndePassou += ", E2"; // Coloca na String as Estações que ele deve pegar
 
+        JOptionPane.showMessageDialog(null, OndePassou);
+
         this.Metodo = new String[5];
 
         Chegou = "E2"; //Ver se ela chegou no destinho correto
@@ -339,16 +362,20 @@ public class MetroParis {
 
         this.Metodo[0] = "E3";
 
-        Comparacao[0] = 8.5;
+        Comparacao[0] = 8.5 + valorReal;
+        buscarValorReal[0] = 8.5;
 
         this.Metodo[1] = "E9";
-        Comparacao[1] = 10;
+        Comparacao[1] = 10 + valorReal;
+        buscarValorReal[1] = 10;
 
         this.Metodo[2] = "E10";
-        Comparacao[2] = 3.5;
+        Comparacao[2] = 3.5 + valorReal;
+        buscarValorReal[2] = 3.5;
 
         this.Metodo[3] = "E1";
-        Comparacao[3] = 10;
+        Comparacao[3] = 10 + valorReal;
+        buscarValorReal[3] = 10;
 
         buscarValor();
         compararValores();
@@ -358,19 +385,24 @@ public class MetroParis {
 
         OndePassou += ", E3"; // Coloca na String as Estações que ele deve pegar
 
+        JOptionPane.showMessageDialog(null, OndePassou);
+
         this.Metodo = new String[5];
 
         Chegou = "E3"; //Ver se ela chegou no destinho correto
         chegou();
 
         this.Metodo[0] = "E2";
-        Comparacao[0] = 8.5;
+        Comparacao[0] = 8.5 + valorReal;
+        buscarValorReal[0] = 8.5;
 
         this.Metodo[1] = "E4";
-        Comparacao[1] = 6.3;
+        Comparacao[1] = 6.3 + valorReal;
+        buscarValorReal[1] = 6.3;
 
-        this.Metodo[3] = "E9";
-        Comparacao[3] = 9.4;
+        this.Metodo[2] = "E9";
+        Comparacao[2] = 9.4 + valorReal;
+        buscarValorReal[2] = 9.4;
 
         buscarValor();
         compararValores();
@@ -378,244 +410,254 @@ public class MetroParis {
     }
 
     public void eQuatro() {
+
         OndePassou += ", E4"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
+
+        this.Metodo = new String[5];
 
         Chegou = "E4"; //Ver se ela chegou no destinho correto
         chegou();
-//
-//        this.Metodo[0] = (ArrayList<Object>) (Object) "E3";
-//        Comparacao[0] = 6.3;
-//
-//        this.Metodo[1] = (ArrayList<Object>) (Object) "E5";
-//        Comparacao[1] = 13;
-//
-//        this.Metodo[2] = (ArrayList<Object>) (Object) "E8";
-//        Comparacao[2] = 15.3;
+
+        this.Metodo[0] = "E5";
+        Comparacao[0] = 13 + valorReal;
+        buscarValorReal[0] = 13;
+
+        this.Metodo[1] = "E8";
+        Comparacao[1] = 15.3 + valorReal;
+        buscarValorReal[1] = 15.3;
+
+        this.Metodo[2] = "E13";
+        Comparacao[2] = 12.8 + valorReal;
+        buscarValorReal[2] = 12.8;
 
         buscarValor();
         compararValores();
     }
 
     public void eCinco() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        OndePassou += ", E5"; // Coloca na String as Estações que ele deve pegar
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        JOptionPane.showMessageDialog(null, OndePassou);
+
+        this.Metodo = new String[5];
+
+        Chegou = "E5"; //Ver se ela chegou no destinho correto
         chegou();
 
-        // this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E4";
+        Comparacao[0] = 13 + valorReal;
+        buscarValorReal[0] = 13;
+
+        this.Metodo[1] = "E6";
+        Comparacao[1] = 3 + valorReal;
+        buscarValorReal[1] = 3;
+
+        this.Metodo[2] = "E7";
+        Comparacao[2] = 2.4 + valorReal;
+        buscarValorReal[2] = 2.4;
+
+        this.Metodo[3] = "E8";
+        Comparacao[3] = 30 + valorReal;
+        buscarValorReal[3] = 30;
 
         buscarValor();
         compararValores();
     }
 
     public void eSeis() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += ", E6"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        this.Metodo = new String[5];
+
+        Chegou = "E6"; //Ver se ela chegou no destinho correto
         chegou();
 
-        //  this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E5";
+        Comparacao[0] = 3 + valorReal;
+        buscarValorReal[0] = 3;
 
         buscarValor();
         compararValores();
     }
 
     public void eSete() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += ", E7"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        this.Metodo = new String[5];
+
+        Chegou = "E7"; //Ver se ela chegou no destinho correto
         chegou();
 
-        // this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E5";
+        Comparacao[0] = 2.4 + valorReal;
+        buscarValorReal[0] = 2.4;
 
         buscarValor();
         compararValores();
     }
 
     public void eOito() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += ", E8"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        this.Metodo = new String[5];
+
+        Chegou = "E8"; //Ver se ela chegou no destinho correto
         chegou();
 
-        // this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E4";
+        Comparacao[0] = 15.3 + valorReal;
+        buscarValorReal[0] = 15.3;
+
+        this.Metodo[1] = "E5";
+        Comparacao[1] = 30 + valorReal;
+        buscarValorReal[1] = 30;
+
+        this.Metodo[2] = "E9";
+        Comparacao[2] = 9.6 + valorReal;
+        buscarValorReal[2] = 9.6;
+
+        this.Metodo[3] = "E12";
+        Comparacao[3] = 6.4 + valorReal;
+        buscarValorReal[3] = 6.4;
 
         buscarValor();
         compararValores();
     }
 
     public void eNove() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += ", E9"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        this.Metodo = new String[5];
+
+        Chegou = "E9"; //Ver se ela chegou no destinho correto
         chegou();
 
-        // this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E2";
+        Comparacao[0] = 10 + valorReal;
+        buscarValorReal[0] = 10;
+
+        this.Metodo[1] = "E3";
+        Comparacao[1] = 9.4 + valorReal;
+        buscarValorReal[1] = 9.4;
+
+        this.Metodo[2] = "E8";
+        Comparacao[2] = 9.6 + valorReal;
+        buscarValorReal[2] = 9.6;
+
+        this.Metodo[3] = "E11";
+        Comparacao[3] = 12.2 + valorReal;
+        buscarValorReal[3] = 12.2;
 
         buscarValor();
         compararValores();
     }
 
     public void eDez() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += ", E10"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        this.Metodo = new String[5];
+
+        Chegou = "E10"; //Ver se ela chegou no destinho correto
         chegou();
 
-        // this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E2";
+        Comparacao[0] = 3.5 + valorReal;
+        buscarValorReal[0] = 3.5;
 
         buscarValor();
         compararValores();
     }
 
     public void eOnze() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += ", E11"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        this.Metodo = new String[5];
+
+        Chegou = "E11"; //Ver se ela chegou no destinho correto
         chegou();
 
-        //this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E9";
+        Comparacao[0] = 12.2 + valorReal;
+        buscarValorReal[0] = 12.2;
 
         buscarValor();
         compararValores();
     }
 
     public void eDoze() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += ", E12"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        this.Metodo = new String[5];
+
+        Chegou = "E12"; //Ver se ela chegou no destinho correto
         chegou();
 
-        //  this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E8";
+        Comparacao[0] = 6.4 + valorReal;
+        buscarValorReal[0] = 6.4;
 
         buscarValor();
         compararValores();
     }
 
     public void eTreze() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += ", E13"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        this.Metodo = new String[5];
+
+        Chegou = "E13"; //Ver se ela chegou no destinho correto
         chegou();
 
-        //  this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E3";
+        Comparacao[0] = 18.7 + valorReal;
+        buscarValorReal[0] = 18.7;
+
+        this.Metodo[1] = "E4";
+        Comparacao[1] = 12.8 + valorReal;
+        buscarValorReal[1] = 12.8;
+
+        this.Metodo[2] = "E14";
+        Comparacao[2] = 5.1 + valorReal;
+        buscarValorReal[2] = 5.1;
 
         buscarValor();
         compararValores();
     }
 
     public void eQuatoze() {
-        OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += ", E14"; // Coloca na String as Estações que ele deve pegar
 
-        Metodo = null;
-        Comparacao = null;
+        JOptionPane.showMessageDialog(null, OndePassou);
 
-        Chegou = "E1"; //Ver se ela chegou no destinho correto
+        this.Metodo = new String[5];
+
+        Chegou = "E14"; //Ver se ela chegou no destinho correto
         chegou();
 
-        //  this.Metodo[0] = (ArrayList<Object>) (Object) "E2";
-        Comparacao[0] = 10;
+        this.Metodo[0] = "E13";
+        Comparacao[0] = 5.1 + valorReal;
+        buscarValorReal[0] = 5.1;
 
         buscarValor();
         compararValores();
-    }
-
-    public void pegarValorEUm() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorEDois() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorETres() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorEQuatro() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorECinco() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorESeis() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorESete() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorEOito() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorENove() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorEDez() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorEOnze() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorEDose() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorETreze() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorEQuatoze() {
-        Comparacao[contador] += E1[DestinoBuscar];
-    }
-
-    public void pegarValorEQuize() {
-        Comparacao[contador] += E1[DestinoBuscar];
     }
 }
