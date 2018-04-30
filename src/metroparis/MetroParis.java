@@ -31,6 +31,7 @@ public class MetroParis {
     String OndePassou = "";
 
     String Chegou;
+    String anterior = "a";
 
     double ValorEuristico;
     double SomaTotal = 0;
@@ -46,7 +47,6 @@ public class MetroParis {
     public static void main(String[] args) {
 
         //JOptionPane.showMessageDialog(null, "Digite a sua Origem e Destino para Tentarmos Encontrar a melhor rota");
-        new MetroParis().contribuirBuscaDestino();
         new MetroParis().start();
     }
 
@@ -71,6 +71,7 @@ public class MetroParis {
         if (Origem == Destino) {
             JOptionPane.showMessageDialog(null, "Vc já esta no lugar, BURRO");
         } else {
+            contribuirBuscaDestino();
             chamarMetodoOrigem();
         }
     }
@@ -136,7 +137,7 @@ public class MetroParis {
     }
 
     public void contribuirBuscaDestino() {
-
+        JOptionPane.showMessageDialog(null, "Busca");
         if ("E1".equals(Destino)) {
             DestinoBuscar = 0;
         }
@@ -195,7 +196,6 @@ public class MetroParis {
                 contador = i;
 
                 Comparacao[contador] += E1[DestinoBuscar];
-
             }
             if ("E2".equals(this.Metodo[i])) {
                 contador = i;
@@ -254,20 +254,22 @@ public class MetroParis {
     }
 
     public void compararValores() {
-        double Max = 0;
+        double mim = 0;
         int Cont = 0;
         String Result = "";
 
-        Max = Comparacao[0];
+        mim = Comparacao[0];
 
-        for (int i = 0; Comparacao.length > i; i++) {
+        for (int i = 0; Comparacao.length > contador; contador++) {
 
-            if (Comparacao[i] > Max) {
-                Max = Comparacao[i];
+            if (Comparacao[contador] < mim) {
+                mim = Comparacao[i];
                 Cont = i;
             }
 
         }
+        contador = 0;
+
         valorReal += buscarValorReal[Cont];
 
         //Result = Metodo[Cont];
@@ -335,16 +337,21 @@ public class MetroParis {
     public void eUm() {
         OndePassou += ", E1"; // Coloca na String as Estações que ele deve pegar
 
-        JOptionPane.showMessageDialog(null, OndePassou);
+        JOptionPane.showMessageDialog(null, DestinoBuscar);
         Chegou = "E1"; //Ver se ela chegou no destinho correto
         chegou();
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
-        this.Metodo[0] = "E2";
+        if ("E2" != anterior) {
+            this.Metodo[0] = "E2";
+            Comparacao[0] = 10 + valorReal;
+            buscarValorReal[0] = 10;
+        }
 
-        Comparacao[0] = 10 + valorReal;
-        buscarValorReal[0] = 10;
+        anterior = "E1";
 
         buscarValor();
         compararValores();
@@ -356,26 +363,37 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E2"; //Ver se ela chegou no destinho correto
         chegou();
 
-        this.Metodo[0] = "E3";
+        if (!"E3".equals(anterior)) {
+            this.Metodo[0] = "E3";
+            Comparacao[0] = 8.5 + valorReal;
+            buscarValorReal[0] = 8.5;
+        }
 
-        Comparacao[0] = 8.5 + valorReal;
-        buscarValorReal[0] = 8.5;
+        if (!"E9".equals(anterior)) {
+            this.Metodo[1] = "E9";
+            Comparacao[1] = 10 + valorReal;
+            buscarValorReal[1] = 10;
+        }
 
-        this.Metodo[1] = "E9";
-        Comparacao[1] = 10 + valorReal;
-        buscarValorReal[1] = 10;
+        if (!"E10".equals(anterior)) {
+            this.Metodo[2] = "E10";
+            Comparacao[2] = 3.5 + valorReal;
+            buscarValorReal[2] = 3.5;
+        }
 
-        this.Metodo[2] = "E10";
-        Comparacao[2] = 3.5 + valorReal;
-        buscarValorReal[2] = 3.5;
+        if (!"E1".equals(anterior)) {
+            this.Metodo[3] = "E1";
+            Comparacao[3] = 10 + valorReal;
+            buscarValorReal[3] = 10;
+        }
 
-        this.Metodo[3] = "E1";
-        Comparacao[3] = 10 + valorReal;
-        buscarValorReal[3] = 10;
+        anterior = "E2";
 
         buscarValor();
         compararValores();
@@ -388,21 +406,31 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E3"; //Ver se ela chegou no destinho correto
         chegou();
 
-        this.Metodo[0] = "E2";
-        Comparacao[0] = 8.5 + valorReal;
-        buscarValorReal[0] = 8.5;
+        if (!"E2".equals(anterior)) {
+            this.Metodo[0] = "E2";
+            Comparacao[0] = 8.5 + valorReal;
+            buscarValorReal[0] = 8.5;
+        }
 
-        this.Metodo[1] = "E4";
-        Comparacao[1] = 6.3 + valorReal;
-        buscarValorReal[1] = 6.3;
+        if (!"E4".equals(anterior)) {
+            this.Metodo[1] = "E4";
+            Comparacao[1] = 6.3 + valorReal;
+            buscarValorReal[1] = 6.3;
+        }
 
-        this.Metodo[2] = "E9";
-        Comparacao[2] = 9.4 + valorReal;
-        buscarValorReal[2] = 9.4;
+        if (!"E9".equals(anterior)) {
+            this.Metodo[2] = "E9";
+            Comparacao[2] = 9.4 + valorReal;
+            buscarValorReal[2] = 9.4;
+        }
+
+        anterior = "E3";
 
         buscarValor();
         compararValores();
@@ -411,26 +439,36 @@ public class MetroParis {
 
     public void eQuatro() {
 
-        OndePassou += ", E4"; // Coloca na String as Estações que ele deve pegar
+        OndePassou += "E4, "; // Coloca na String as Estações que ele deve pegar
 
         JOptionPane.showMessageDialog(null, OndePassou);
 
-        this.Metodo = new String[5];
+        Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E4"; //Ver se ela chegou no destinho correto
         chegou();
 
-        this.Metodo[0] = "E5";
-        Comparacao[0] = 13 + valorReal;
-        buscarValorReal[0] = 13;
+        if (!"E5".equals(anterior)) {
+            Metodo[0] = "E5";
+            Comparacao[0] = 13 + valorReal;
+            buscarValorReal[0] = 13;
+        }
 
-        this.Metodo[1] = "E8";
-        Comparacao[1] = 15.3 + valorReal;
-        buscarValorReal[1] = 15.3;
+        if (!"E8".equals(anterior)) {
+            this.Metodo[1] = "E8";
+            Comparacao[1] = 15.3 + valorReal;
+            buscarValorReal[1] = 15.3;
+        }
 
-        this.Metodo[2] = "E13";
-        Comparacao[2] = 12.8 + valorReal;
-        buscarValorReal[2] = 12.8;
+        if (!"E13".equals(anterior)) {
+            this.Metodo[2] = "E13";
+            Comparacao[2] = 12.8 + valorReal;
+            buscarValorReal[2] = 12.8;
+        }
+
+        anterior = "E4";
 
         buscarValor();
         compararValores();
@@ -443,26 +481,37 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E5"; //Ver se ela chegou no destinho correto
         chegou();
 
-        this.Metodo[0] = "E4";
-        Comparacao[0] = 13 + valorReal;
-        buscarValorReal[0] = 13;
+        if (!"E4".equals(anterior)) {
+            this.Metodo[0] = "E4";
+            Comparacao[0] = 13 + valorReal;
+            buscarValorReal[0] = 13;
+        }
 
-        this.Metodo[1] = "E6";
-        Comparacao[1] = 3 + valorReal;
-        buscarValorReal[1] = 3;
+        if (!"E6".equals(anterior)) {
+            this.Metodo[1] = "E6";
+            Comparacao[1] = 3 + valorReal;
+            buscarValorReal[1] = 3;
+        }
 
-        this.Metodo[2] = "E7";
-        Comparacao[2] = 2.4 + valorReal;
-        buscarValorReal[2] = 2.4;
+        if (!"E7".equals(anterior)) {
+            this.Metodo[2] = "E7";
+            Comparacao[2] = 2.4 + valorReal;
+            buscarValorReal[2] = 2.4;
+        }
 
-        this.Metodo[3] = "E8";
-        Comparacao[3] = 30 + valorReal;
-        buscarValorReal[3] = 30;
+        if (!"E8".equals(anterior)) {
+            this.Metodo[3] = "E8";
+            Comparacao[3] = 30 + valorReal;
+            buscarValorReal[3] = 30;
+        }
 
+        anterior = "E5";
         buscarValor();
         compararValores();
     }
@@ -473,6 +522,8 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E6"; //Ver se ela chegou no destinho correto
         chegou();
@@ -491,6 +542,8 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E7"; //Ver se ela chegou no destinho correto
         chegou();
@@ -509,6 +562,8 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E8"; //Ver se ela chegou no destinho correto
         chegou();
@@ -539,6 +594,8 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E9"; //Ver se ela chegou no destinho correto
         chegou();
@@ -569,6 +626,8 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E10"; //Ver se ela chegou no destinho correto
         chegou();
@@ -587,6 +646,8 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E11"; //Ver se ela chegou no destinho correto
         chegou();
@@ -605,6 +666,8 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E12"; //Ver se ela chegou no destinho correto
         chegou();
@@ -623,6 +686,8 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E13"; //Ver se ela chegou no destinho correto
         chegou();
@@ -649,6 +714,8 @@ public class MetroParis {
         JOptionPane.showMessageDialog(null, OndePassou);
 
         this.Metodo = new String[5];
+        this.Comparacao = new double[5];
+        this.buscarValorReal = new double[5];
 
         Chegou = "E14"; //Ver se ela chegou no destinho correto
         chegou();
